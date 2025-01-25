@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FBCCDA88-4F07-45D9-A9E9-146637D948A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3EDD37B1-4792-45B6-A4A4-8BDB6B8B6630}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{38F5B38C-C37F-495C-B9ED-B79231867DA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{BDC7F27B-4D95-4E1C-8B7D-39A843ED7354}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{111620BC-80B6-4528-AC24-C5A06ED2498C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Models", "src\Common\Udemy.Common.Models\Udemy.Common.Models.csproj", "{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Catalog.Domain", "src\Catalog\Udemy.Catalog.Domain\Udemy.Catalog.Domain.csproj", "{0F40D06B-1FC2-4519-8FE9-825758A1878D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Persistence", "src\Common\Udemy.Common.Persistence\Udemy.Common.Persistence.csproj", "{560E1929-E26B-4A6D-899A-E83AAECEF88A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D5DDEA63-B13C-42A0-ACB7-9A1CA46EA45A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8921E886-DC4C-4D5F-9C06-A2519EF4F4C0}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Packages.props = src\Directory.Packages.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F40D06B-1FC2-4519-8FE9-825758A1878D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F40D06B-1FC2-4519-8FE9-825758A1878D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F40D06B-1FC2-4519-8FE9-825758A1878D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F40D06B-1FC2-4519-8FE9-825758A1878D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{560E1929-E26B-4A6D-899A-E83AAECEF88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{560E1929-E26B-4A6D-899A-E83AAECEF88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{560E1929-E26B-4A6D-899A-E83AAECEF88A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{560E1929-E26B-4A6D-899A-E83AAECEF88A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FBCCDA88-4F07-45D9-A9E9-146637D948A2} = {D5DDEA63-B13C-42A0-ACB7-9A1CA46EA45A}
+		{3EDD37B1-4792-45B6-A4A4-8BDB6B8B6630} = {D5DDEA63-B13C-42A0-ACB7-9A1CA46EA45A}
+		{38F5B38C-C37F-495C-B9ED-B79231867DA2} = {D5DDEA63-B13C-42A0-ACB7-9A1CA46EA45A}
+		{BDC7F27B-4D95-4E1C-8B7D-39A843ED7354} = {D5DDEA63-B13C-42A0-ACB7-9A1CA46EA45A}
+		{111620BC-80B6-4528-AC24-C5A06ED2498C} = {3EDD37B1-4792-45B6-A4A4-8BDB6B8B6630}
+		{A6B498A5-D6A2-49DE-A4BD-DC3FE12195A9} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
+		{0F40D06B-1FC2-4519-8FE9-825758A1878D} = {111620BC-80B6-4528-AC24-C5A06ED2498C}
+		{560E1929-E26B-4A6D-899A-E83AAECEF88A} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
+	EndGlobalSection
+EndGlobal
