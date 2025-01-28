@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Udemy.Common.Authentication.Helpers;
 using Udemy.Common.Models.Entities.Base;
 using Udemy.Common.Models.Entities.Enums;
 
 namespace Udemy.Common.Persistence.Interceptors;
+
 public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 {
     private const string Authorization = "Authorization";
@@ -21,18 +23,21 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         return base.SavedChangesAsync(eventData!, result, cancellationToken);
     }
 
-    private void AssignBaseProperties(DbContext context)
+    private static void AssignBaseProperties(DbContext context)
     {
-        var entries = context.ChangeTracker.Entries<BaseEntity>();
-        var accessor = context.GetService<IHttpContextAccessor>();
-        var token = accessor?.HttpContext?.Request?.Headers[Authorization]
+        IEnumerable<EntityEntry<BaseEntity>> entries = context.ChangeTracker.Entries<BaseEntity>();
+        IHttpContextAccessor accessor = context.GetService<IHttpContextAccessor>();
+        string? token = accessor?.HttpContext?.Request?.Headers[Authorization]
                                                    .FirstOrDefault()?.Split(" ")
                                                    .LastOrDefault();
-        string userId = token is not null ? AuthorizationHelper.GetUserId(token) : NonAuthorizatedUser;
+        string userId = token is not null
+            ? JwtHelper.GetUser(token)
+            : NonAuthorizatedUser;
 
-        foreach (var entry in entries)
+        foreach (EntityEntry<BaseEntity> entry in entries)
         {
-            SetIfAdded(entry,userId);
+            SetIfAdded(entry, userId);
+            SetIfModified(entry, userId);
         }
     }
 
