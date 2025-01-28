@@ -1,0 +1,17 @@
+services:
+  udemy.catalog.webapi:
+    image: ${DOCKER_REGISTRY-}udemycatalogwebapi
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/Udemy.Catalog.WebApi/Dockerfile
+
+  postgres:
+        image: postgres:latest
+        environment:
+          POSTGRES_DB: demo
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        volumes:
+            - ./.containers/postgres_data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
