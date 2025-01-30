@@ -28,6 +28,8 @@ public class Paginate<TModel>
         Pages = (int)Math.Ceiling(Count / (double)pageSize);
     }
 
+    public Paginate(IEnumerable<TModel> items, int pageNumber, int pageSize, int count) : this(items, pageNumber, pageSize) => Count = count;
+
     public int Index { get; init; }
     public int Size { get; init; }
     public int Count { get; init; }
