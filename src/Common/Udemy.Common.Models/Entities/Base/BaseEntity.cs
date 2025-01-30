@@ -6,24 +6,20 @@ namespace Udemy.Common.Models.Entities.Base;
 /// Base Entity
 /// </summary>
 /// <typeparam name="TId">Entity Id Type</typeparam>
-public abstract class BaseEntity
+public abstract class BaseEntity<TId> : IEquatable<BaseEntity<TId>> where TId : struct
 {
+    public TId Id { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public string? CreatedBy { get; set; }
     public Statuses Status { get; set; }
     public string? ModifiedBy { get; set; }
     public DateTime? ModifiedDate { get; set; }
-}
-
-public class BaseEntityWithId<TId> : BaseEntity, IEquatable<BaseEntityWithId<TId>> where TId : struct
-{
-    public TId Id { get; set; }
 
     public bool IsTransient() => Id.Equals(default(TId));
 
     public override bool Equals(object? obj)
     {
-        if (obj is not BaseEntityWithId<TId> baseEntity)
+        if (obj is not BaseEntity<TId> baseEntity)
             return false;
 
         if (ReferenceEquals(this, obj))
@@ -38,7 +34,7 @@ public class BaseEntityWithId<TId> : BaseEntity, IEquatable<BaseEntityWithId<TId
         return Id.Equals(baseEntity.Id);
     }
 
-    public bool Equals(BaseEntityWithId<TId>? other) => base.Equals(other);
+    public bool Equals(BaseEntity<TId>? other) => base.Equals(other);
 
     public override int GetHashCode()
     {
@@ -50,7 +46,7 @@ public class BaseEntityWithId<TId> : BaseEntity, IEquatable<BaseEntityWithId<TId
         return Id.GetHashCode();
     }
 
-    public static bool operator ==(BaseEntityWithId<TId> left, BaseEntityWithId<TId> right)
+    public static bool operator ==(BaseEntity<TId> left, BaseEntity<TId> right)
     {
         if (Equals(left, null))
             return Equals(right, null);
@@ -58,6 +54,10 @@ public class BaseEntityWithId<TId> : BaseEntity, IEquatable<BaseEntityWithId<TId
         return left.Equals(right);
     }
 
-    public static bool operator !=(BaseEntityWithId<TId> left, BaseEntityWithId<TId> right) => !(left == right);
+    public static bool operator !=(BaseEntity<TId> left, BaseEntity<TId> right) => !(left == right);
 
+}
+
+public abstract class BaseEntity : BaseEntity<int>
+{
 }
