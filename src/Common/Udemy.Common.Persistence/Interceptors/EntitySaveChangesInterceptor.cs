@@ -38,6 +38,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         {
             SetIfAdded(entry, userId);
             SetIfModified(entry, userId);
+            SetIfDeleted(entry, userId);
         }
     }
 
@@ -58,6 +59,16 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 
         entry.Entity.ModifiedDate = DateTime.Now;
         entry.Entity.ModifiedBy = userId;
-        entry.Entity.Status |= Statuses.Modified;
+        entry.Entity.Status = Statuses.Modified;
+    }
+
+    private static void SetIfDeleted(EntityEntry<BaseEntity> entry, string userId)
+    {
+        if (entry?.State is not EntityState.Deleted)
+            return;
+
+        entry.Entity.ModifiedDate = DateTime.Now;
+        entry.Entity.ModifiedBy = userId;
+        entry.Entity.Status = Statuses.Deleted;
     }
 }
