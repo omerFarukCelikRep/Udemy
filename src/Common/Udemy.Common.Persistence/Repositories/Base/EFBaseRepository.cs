@@ -6,8 +6,16 @@ using Udemy.Common.Models.Entities.Base;
 using Udemy.Common.Models.Models.Pagination;
 using Udemy.Common.Persistence.Extensions;
 
-namespace Udemy.Common.Persistence.Repositories;
-public abstract class EFBaseRepository<TEntity, TId>(DbContext context)
+namespace Udemy.Common.Persistence.Repositories.Base;
+public abstract class EFBaseRepository<TEntity, TId>(DbContext context) :
+    IAsyncInsertableRepository<TEntity, TId>,
+    IAsyncUpdateableRepository<TEntity, TId>,
+    IAsyncDeleteableRepository<TEntity, TId>,
+    IAsyncQueryableRepository<TEntity, TId>,
+    IAsyncOrderableRepository<TEntity, TId>,
+    IAsyncFindableRepository<TEntity, TId>,
+    IAsyncPaginateRepository<TEntity, TId>,
+    IAsyncRepository
     where TEntity : BaseEntity<TId>
     where TId : struct
 {
@@ -51,9 +59,7 @@ public abstract class EFBaseRepository<TEntity, TId>(DbContext context)
         cancellationToken.ThrowIfCancellationRequested();
         IQueryable<TEntity> queryable = GetAllAsQueryable();
         if (predicate is not null)
-        {
             queryable = queryable.Where(predicate);
-        }
 
         await queryable.ExecuteUpdateAsync(setPropertyCalls, cancellationToken);
     }
