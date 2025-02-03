@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Utilities", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Web", "src\Common\Udemy.Common.Web\Udemy.Common.Web.csproj", "{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Logging", "src\Common\Udemy.Common.Logging\Udemy.Common.Logging.csproj", "{314B6513-6F79-4C0A-80B1-2AE117A810DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314B6513-6F79-4C0A-80B1-2AE117A810DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314B6513-6F79-4C0A-80B1-2AE117A810DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314B6513-6F79-4C0A-80B1-2AE117A810DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314B6513-6F79-4C0A-80B1-2AE117A810DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +112,6 @@ Global
 		{E0758A6D-09C3-44AD-877D-21FDEDF563B7} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
 		{5DC4C4E6-D038-4F9C-8883-1973624D87BF} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
 		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
+		{314B6513-6F79-4C0A-80B1-2AE117A810DD} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
 	EndGlobalSection
 EndGlobal
