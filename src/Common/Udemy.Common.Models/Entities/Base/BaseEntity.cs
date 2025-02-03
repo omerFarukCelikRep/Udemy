@@ -6,7 +6,7 @@ namespace Udemy.Common.Models.Entities.Base;
 /// Base Entity
 /// </summary>
 /// <typeparam name="TId">Entity Id Type</typeparam>
-public abstract class BaseEntity<TId> : IEquatable<BaseEntity<TId>> where TId : struct
+public abstract class BaseEntity<TId> : IAuditableEntity, IEquatable<BaseEntity<TId>> where TId : struct
 {
     public TId Id { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.Now;
