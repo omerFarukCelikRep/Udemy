@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Storage;
 using Udemy.Common.Models.Entities.Base;
 using Udemy.Common.Models.Models.Pagination;
 using Udemy.Common.Persistence.Extensions;
@@ -210,6 +211,10 @@ public abstract class EFBaseRepository<TEntity, TId>(DbContext context) :
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) => await context.SaveChangesAsync(cancellationToken);
+
+    public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default) => await context.Database.BeginTransactionAsync(cancellationToken);
+
+    public async Task CommitTransactionAsync(CancellationToken cancellationToken = default) => await context.Database.CommitTransactionAsync(cancellationToken);
 
     /// <summary>
     /// Get All Data as IQueryable
