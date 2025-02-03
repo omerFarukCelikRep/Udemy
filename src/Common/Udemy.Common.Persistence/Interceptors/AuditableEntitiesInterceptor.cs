@@ -4,15 +4,14 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Udemy.Common.Authentication.Helpers;
-using Udemy.Common.Models.Entities.Base;
+using Udemy.Common.Models.Constants;
+using Udemy.Common.Models.Entities;
 using Udemy.Common.Models.Entities.Enums;
 
 namespace Udemy.Common.Persistence.Interceptors;
 
-public class EntitySaveChangesInterceptor : SaveChangesInterceptor
+public class AuditableEntitiesInterceptor : SaveChangesInterceptor
 {
-    private const string Authorization = "Authorization";
-    private const string NonAuthorizatedUser = "NonAuthorizatedUser";
     public override ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
     {
         if (eventData?.Context is not null)
@@ -25,24 +24,23 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
 
     private static void AssignBaseProperties(DbContext context)
     {
-        IEnumerable<EntityEntry<BaseEntity>> entries = context.ChangeTracker.Entries<BaseEntity>();
+        IEnumerable<EntityEntry<IAuditableEntity>> entries = context.ChangeTracker.Entries<IAuditableEntity>();
         IHttpContextAccessor accessor = context.GetService<IHttpContextAccessor>();
-        string? token = accessor?.HttpContext?.Request?.Headers[Authorization]
+        string? token = accessor?.HttpContext?.Request?.Headers[Header.Authorization]
                                                    .FirstOrDefault()?.Split(" ")
                                                    .LastOrDefault();
         string userId = token is not null
             ? JwtHelper.GetUser(token)
-            : NonAuthorizatedUser;
+            : Authorization.NonAuthorizatedUser;
 
-        foreach (EntityEntry<BaseEntity> entry in entries)
+        foreach (EntityEntry<IAuditableEntity> entry in entries)
         {
             SetIfAdded(entry, userId);
             SetIfModified(entry, userId);
-            SetIfDeleted(entry, userId);
         }
     }
 
-    private static void SetIfAdded(EntityEntry<BaseEntity> entry, string userId)
+    private static void SetIfAdded(EntityEntry<IAuditableEntity> entry, string userId)
     {
         if (entry?.State is not EntityState.Added)
             return;
@@ -52,7 +50,7 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         entry.Entity.Status = Statuses.Added;
     }
 
-    private static void SetIfModified(EntityEntry<BaseEntity> entry, string userId)
+    private static void SetIfModified(EntityEntry<IAuditableEntity> entry, string userId)
     {
         if (entry?.State is not EntityState.Modified)
             return;
@@ -60,15 +58,5 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         entry.Entity.ModifiedDate = DateTime.Now;
         entry.Entity.ModifiedBy = userId;
         entry.Entity.Status = Statuses.Modified;
-    }
-
-    private static void SetIfDeleted(EntityEntry<BaseEntity> entry, string userId)
-    {
-        if (entry?.State is not EntityState.Deleted)
-            return;
-
-        entry.Entity.ModifiedDate = DateTime.Now;
-        entry.Entity.ModifiedBy = userId;
-        entry.Entity.Status = Statuses.Deleted;
     }
 }
