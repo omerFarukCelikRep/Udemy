@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Authentication
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Utilities", "src\Common\Udemy.Common.Utilities\Udemy.Common.Utilities.csproj", "{5DC4C4E6-D038-4F9C-8883-1973624D87BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Udemy.Common.Web", "src\Common\Udemy.Common.Web\Udemy.Common.Web.csproj", "{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{5DC4C4E6-D038-4F9C-8883-1973624D87BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC4C4E6-D038-4F9C-8883-1973624D87BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC4C4E6-D038-4F9C-8883-1973624D87BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,5 +105,6 @@ Global
 		{B319EB32-E48A-490B-92FC-CDD40FDA45DC} = {111620BC-80B6-4528-AC24-C5A06ED2498C}
 		{E0758A6D-09C3-44AD-877D-21FDEDF563B7} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
 		{5DC4C4E6-D038-4F9C-8883-1973624D87BF} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
+		{AA531DB4-EE59-49F5-BBBB-0DA8FC9E1A70} = {FBCCDA88-4F07-45D9-A9E9-146637D948A2}
 	EndGlobalSection
 EndGlobal
