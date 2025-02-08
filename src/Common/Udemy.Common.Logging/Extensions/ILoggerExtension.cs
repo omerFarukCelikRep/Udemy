@@ -4,6 +4,7 @@ using Serilog.Events;
 using Serilog.Formatting.Compact;
 
 namespace Udemy.Common.Logging.Extensions;
+
 public static class ILoggerExtension
 {
     private const string Path = "../Logs/Logs.txt";
@@ -14,6 +15,7 @@ public static class ILoggerExtension
                                                                              loggerConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Warning);
                                                                              loggerConfiguration.MinimumLevel.Override("Microsoft.AspNetCore.Hosting.Diagnostics", LogEventLevel.Error);
                                                                              loggerConfiguration.MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information);
+                                                                             loggerConfiguration.MinimumLevel.Override("Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware", LogEventLevel.Debug);
 
                                                                              loggerConfiguration.WriteTo.Console(formatter: new CompactJsonFormatter(), restrictedToMinimumLevel: LogEventLevel.Debug);
 
