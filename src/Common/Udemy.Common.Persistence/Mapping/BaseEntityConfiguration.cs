@@ -8,7 +8,7 @@ public class BaseEntityConfiguration<TEntity, TId> : IEntityTypeConfiguration<TE
     where TEntity : BaseEntity<TId>
     where TId : struct
 {
-    public void Configure(EntityTypeBuilder<TEntity> builder)
+    public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
         builder.HasKey(x => x.Id);
 
