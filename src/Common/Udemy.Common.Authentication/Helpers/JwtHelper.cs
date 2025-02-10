@@ -26,9 +26,17 @@ public static class JwtHelper
                                 token.EncodedPayload);
 
     }
-    public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
+
+    public static DecodedToken DecodeJwt(string token)
     {
-        JwtSecurityToken token = _jwtSecurityTokenHandler.ReadJwtToken(jwt);
+        JwtSecurityToken securityToken = _jwtSecurityTokenHandler.ReadJwtToken(token);
+
+        return DecodeJwt(securityToken);
+    }
+
+    public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwtToken)
+    {
+        JwtSecurityToken token = _jwtSecurityTokenHandler.ReadJwtToken(jwtToken);
 
         return token;
     }

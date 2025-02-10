@@ -16,11 +16,11 @@ public class DomainPrincipal(IHttpContextAccessor contextAccessor)
         string? token = contextAccessor?.HttpContext?.Request?.Headers[Header.Authorization]
                                                    .FirstOrDefault()?.Split(" ")
                                                    .LastOrDefault();
-        IEnumerable<Claim> claims = [];
-        if (string.IsNullOrWhiteSpace(token))
-            claims = JwtHelper.ConvertJwtStringToJwtSecurityToken(token).Claims;
+        Dictionary<string, string> claims = [];
+        if (!string.IsNullOrWhiteSpace(token))
+            claims = JwtHelper.DecodeJwt(token).Claims;
 
-        return claims.Where(x => x.Type == claimName)
+        return claims.Where(x => x.Key == claimName)
                      .Select(x => x.Value)
                      .Cast<T>()
                      .FirstOrDefault();
