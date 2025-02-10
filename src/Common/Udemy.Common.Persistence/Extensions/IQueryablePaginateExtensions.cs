@@ -8,7 +8,8 @@ public static class IQueryablePaginateExtensions
     {
         ArgumentNullException.ThrowIfNull(source);
 
-        EnsureInRange(index, size);
+        EnsureInRange(index);
+        EnsureInRange(size);
 
         int count = await source.CountAsync(cancellationToken)
                                 .ConfigureAwait(false);
@@ -18,12 +19,9 @@ public static class IQueryablePaginateExtensions
         return new Paginate<T>(items, index, size, count);
     }
 
-    private static void EnsureInRange(int index, int size)
+    private static void EnsureInRange(int value)
     {
-        ArgumentOutOfRangeException.ThrowIfNegative(index);
-        ArgumentOutOfRangeException.ThrowIfLessThan(index, default);
-
-        ArgumentOutOfRangeException.ThrowIfNegative(size);
-        ArgumentOutOfRangeException.ThrowIfLessThan(size, default);
+        ArgumentOutOfRangeException.ThrowIfNegative(value);
+        ArgumentOutOfRangeException.ThrowIfLessThan(value, default);
     }
 }

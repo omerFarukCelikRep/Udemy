@@ -7,13 +7,6 @@ public static class JwtHelper
 {
     private static readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler = new();
 
-    private static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
-    {
-        JwtSecurityToken token = _jwtSecurityTokenHandler.ReadJwtToken(jwt);
-
-        return token;
-    }
-
     private static DecodedToken DecodeJwt(JwtSecurityToken token)
     {
         string keyId = token.Header.Kid;
@@ -31,6 +24,13 @@ public static class JwtHelper
                                 token.ValidFrom,
                                 token.EncodedHeader,
                                 token.EncodedPayload);
+
+    }
+    public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
+    {
+        JwtSecurityToken token = _jwtSecurityTokenHandler.ReadJwtToken(jwt);
+
+        return token;
     }
 
     public static string GetUser(string token)
